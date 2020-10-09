@@ -1,8 +1,3 @@
-/ Return an PART which has been extracted from ENTITY:
-typealias Extract<ENTITY, PART> = (ENTITY) -> PART
-
-// Return a copy of ENTITY with PART injected into it:
-typealias Inject<PART, ENTITY> = (PART, ENTITY) -> ENTITY```
 For each step, please write the prod code and accompanying test(s):
 
 1. Define a val `lens` which is a lambda function of type `Extract<Request, String?>` that extracts the "foobar" header from an http4k Request.
@@ -15,7 +10,8 @@ For each step, please write the prod code and accompanying test(s):
 8. Add a guard to the `get` calls to catch any thrown Exceptions and turn these into `ExtractionFailed`.
 9. Implement `map()` in `Builder` with the following signature:
 ```kotlin
-fun <NEXT_PART> map(nextGet: (PART) -> NEXT_PART): Builder<ENTITY, NEXT_PART>```
+fun <NEXT_PART> map(nextGet: (PART) -> NEXT_PART): Builder<ENTITY, NEXT_PART>
+```
 ... that transforms `PART` into a new type.
 
 10. Implement an extension method `fun <T> Builder<T, String>.int() : Builder<T, Int>` that maps the `String` to an `Int`.
@@ -27,10 +23,12 @@ Notice that the above is impossible due to a clash of types! Rewrite `Extract` a
 12. Rewrite `Builder` to return instances of `BiDi`. Just make the injection methods `{ TODO() }` for now
 13. Introduce a `set` function val in to the `Builder` constructor with the following signature:
 ```kotlin
-val set: (String, ENTITY, PART) -> ENTITY```
+val set: (String, ENTITY, PART) -> ENTITY
+```
 Implement the injection methods on `BiDi` and reimplement `map()` signature to also take 2 mapping functions:
 ```kotlin
-fun <NEXT_PART> map(nextGet: (PART) -> NEXT_PART, nextSet: (NEXT_PART) -> PART): Builder<ENTITY, NEXT_PART>```
+fun <NEXT_PART> map(nextGet: (PART) -> NEXT_PART, nextSet: (NEXT_PART) -> PART): Builder<ENTITY, NEXT_PART>
+```
 ### Bonus (bonus) exercise:
 14. Convert the get and set mapping functions in `Builder` to extract/inject lists of values. Reimplement the extract and inject functions to use the first value in the list.
-15. Add `multi` as a member of `Builder`, which extracts/injects the entire list of values.```
+15. Add `multi` as a member of `Builder`, which extracts/injects the entire list of values.
