@@ -2,10 +2,10 @@ For each step, please write the prod code and accompanying test(s):
 
 1. Define a val `lens` which is a lambda function of type `Extract<Request, String?>` that extracts the "foobar" header from an http4k Request.
 2. Extract the `lens` val into a function `optional()` that returns an `Extract<Request, String?>` for a passed Header name.
-3. Define a `BoHeader` object and move the `optional()` onto it.
-4. Create `required()` in `BoHeader` which returns an `Extract<Request, String>` that extracts the header and throws `ExtractFailed` if it is null.
-5. Define an object `BoQuery` that targets the query parameters instead of headers.
-6. Extract out a common superclass `Builder` which has a constructor with a val `get` of type `(String, Request) -> String?`. `BoHeader` and `BoQuery` will extend `Builder`. Pull `optional()` and `required()` up to `Builder`.
+3. Define a `MyHeader` object and move the `optional()` onto it.
+4. Create `required()` in `MyHeader` which returns an `Extract<Request, String>` that extracts the header and throws `ExtractFailed` if it is null.
+5. Define an object `MyQuery` that targets the query parameters instead of headers.
+6. Extract out a common superclass `Builder` which has a constructor with a val `get` of type `(String, Request) -> String?`. `MyHeader` and `MyQuery` will extend `Builder`. Pull `optional()` and `required()` up to `Builder`.
 7. Generify `Builder` to be expressed in `ENTITY` and `PART` instead of `Request` and `String`.
 8. Add a guard to the `get` calls to catch any thrown Exceptions and turn these into `ExtractionFailed`.
 9. Implement `map()` in `Builder` with the following signature:
