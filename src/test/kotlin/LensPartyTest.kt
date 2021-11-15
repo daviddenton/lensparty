@@ -1,6 +1,6 @@
 import com.natpryce.hamkrest.absent
 import com.natpryce.hamkrest.assertion.assertThat
-import org.http4k.core.Method
+import org.http4k.core.Method.GET
 import org.http4k.core.Request
 import org.junit.jupiter.api.Test
 
@@ -9,7 +9,7 @@ class LensPartyTest {
     @Test
     fun `part 1`() {
         val lens: Extract<Request, String?> = { r -> r.header("foobar") }
-        assertThat(lens(Request(Method.GET, "")), absent())
+        assertThat(lens(Request(GET, "")), absent())
     }
 
     @Test
@@ -17,7 +17,7 @@ class LensPartyTest {
         fun optional(name: String) = { r: Request -> r.header(name) }
 
         val lens: Extract<Request, String?> = optional("foobar")
-        assertThat(lens(Request(Method.GET, "")), absent())
+        assertThat(lens(Request(GET, "")), absent())
     }
 
     object Part3 {
