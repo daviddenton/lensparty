@@ -7,7 +7,7 @@ For each step, please write the prod code and accompanying test(s):
 5. Define an object `MyQuery` that targets the query parameters instead of headers.
 6. Extract out a common superclass `Builder` which has a constructor with a val `get` of type `(String, Request) -> String?`. `MyHeader` and `MyQuery` will extend `Builder`. Pull `optional()` and `required()` up to `Builder`.
 7. Generify `Builder` to be expressed in `ENTITY` and `PART` instead of `Request` and `String`.
-8. Add a guard to the `get` calls to catch any thrown Exceptions and turn these into `ExtractionFailed`.
+8. Add a guard to the `get` calls to catch any thrown Exceptions and turn these into `ExtractFailed`.
 9. Implement `map()` in `Builder` with the following signature:
 ```kotlin
 fun <NEXT_PART> map(nextGet: (PART) -> NEXT_PART): Builder<ENTITY, NEXT_PART>
