@@ -26,7 +26,7 @@ fun <NEXT_PART> map(nextGet: (PART) -> NEXT_PART): Builder<ENTITY, NEXT_PART> = 
 10. Implement an extension method `fun <T> Builder<T, String>.int() : Builder<T, Int>` that maps the `String` to an `Int`.
 
 ### Bonus exercise:
-11. Introduce an interface `BiDi<ENTITY, PART>` into `definitions.kt` that encapsulates both injecting and extracting:
+11. Introduce an interface `BiDi<ENTITY, PART>` into `types.kt` that encapsulates both injecting and extracting:
     ```interface BiDi<ENTITY, PART> : Extract<ENTITY, PART>, Inject<PART, ENTITY>```
     Notice that the above is impossible due to a clash of types! Rewrite `Extract` and `Inject` to be interfaces with a single `invoke()` function.
 12. Rewrite `Builder` to return instances of `BiDi`. Just make the injection methods `{ TODO() }` for now
